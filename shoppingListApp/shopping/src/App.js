@@ -1,4 +1,5 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import FirstPage from "./Components/FirstPage";
 import PageHeader from "./Components/PageHeader";
 
