@@ -1,22 +1,17 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 const ProductsPage = ({ id, prod, action, isProductDeleted, completed }) => {
-  const checkbox = useRef(null);
-
-  function toggleTodo(id) {
-    // console.log("The check status " + checkbox.current.checked);
-    if (checkbox.current.checked) {
-      const checkedElement = document.getElementById(id);
-      document.body.style.textDecoration = "line-through";
-      checkedElement.style.textDecoration = "line-through";
-    }
-  }
-
-  const handleChange = (event) => {
-    this.setState({ boxAll: event.target.checked }, () => {
-      console.log("This returned true or false", this.state.boxAll);
-    });
+  const checkedElementArray = [];
+  const checkedElementFunction = (e) => {
+    console.log("The id after clicking the checkbox: " + id);
+    console.log("the checked element " + id);
+    checkedElementArray.push(prod);
+    return id;
   };
+
+  const [strikeThroughCSS, setStrikeThroughCSS] = useState(false);
+
+  console.log(checkedElementArray);
 
   return (
     <>
@@ -29,15 +24,12 @@ const ProductsPage = ({ id, prod, action, isProductDeleted, completed }) => {
         </thead>
         <tbody>
           <tr>
-            <td key={id}>
+            <td key={id} style={{ width: "500px" }}>
               <input
                 type="checkbox"
                 style={{ marginRight: "20px" }}
-                onChange={(e) => {
-                  console.log("The id after clicking he checkbox: " + id);
-                  //   toggleTodo(id);
-                  return id;
-                }}
+                onClick={() => setStrikeThroughCSS((prev) => !prev)}
+                onChange={checkedElementFunction}
               />
               {prod}
             </td>
