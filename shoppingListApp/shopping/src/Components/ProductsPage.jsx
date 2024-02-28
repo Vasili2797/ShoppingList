@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
+import "../App.css";
 
 const ProductsPage = ({ id, prod, action, isProductDeleted, completed }) => {
+  const foundElement = document.querySelector(".product-item");
+  if (foundElement) {
+    console.log("the found element: " + foundElement.innerText);
+  }
+
   const checkedElementArray = [];
   const checkedElementFunction = (e) => {
     console.log("The id after clicking the checkbox: " + id);
-    console.log("the checked element " + id);
+    console.log("the checked element " + prod);
     checkedElementArray.push(prod);
     return id;
   };
 
-  const [strikeThroughCSS, setStrikeThroughCSS] = useState(false);
-
-  console.log(checkedElementArray);
+  const style = {
+    width: "500px",
+  };
 
   return (
     <>
@@ -24,14 +30,13 @@ const ProductsPage = ({ id, prod, action, isProductDeleted, completed }) => {
         </thead>
         <tbody>
           <tr>
-            <td key={id} style={{ width: "500px" }}>
+            <td key={id} style={style}>
               <input
                 type="checkbox"
                 style={{ marginRight: "20px" }}
-                onClick={() => setStrikeThroughCSS((prev) => !prev)}
-                onChange={checkedElementFunction}
+                onClick={checkedElementFunction}
               />
-              {prod}
+              <span>{prod}</span>
             </td>
             <td key={prod}>{action}</td>
           </tr>

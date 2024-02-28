@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ProductsPage from "./ProductsPage";
+import "../App.css";
 
 const FirstPage = () => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState("");
-  const [line, setLine] = useState("");
   const [deletedProducts, setDeletedProducts] = useState([]);
 
   const handleInputChange = (e) => {
@@ -24,18 +24,6 @@ const FirstPage = () => {
     }
   };
 
-  const strikeThroughProduct = () => {
-    const helloWorld = ProductsPage.checkedElementFunction();
-    console.log(
-      "I am consoling from firstPage and the variable is helloworld " +
-        helloWorld
-    );
-    // if (checkedElementFunction === products.id) {
-    // }
-  };
-
-  console.log("The deleted Products: " + deletedProducts);
-
   return (
     <>
       <label htmlFor="ProductInput">Product Name:</label>
@@ -53,7 +41,7 @@ const FirstPage = () => {
       <ul>
         {products.map((product1, index1) => {
           console.log(index1);
-          console.log("The products:  of te product 1 "+product1);
+          console.log("The products:  of te product 1 " + product1);
           return (
             <>
               <ProductsPage
@@ -65,7 +53,6 @@ const FirstPage = () => {
                 action={
                   <div className="input-group">
                     <button
-                      // id={index1}
                       className="btn btn-danger ms-2"
                       onClick={() => {
                         setDeletedProducts([...deletedProducts, index1]);
