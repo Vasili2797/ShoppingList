@@ -9,8 +9,6 @@ const ProductsPage = ({ id, prod, action, isProductDeleted, completed }) => {
 
   const checkedElementArray = [];
   const checkedElementFunction = (e) => {
-    console.log("The id after clicking the checkbox: " + id);
-    console.log("the checked element " + prod);
     checkedElementArray.push(prod);
     return id;
   };

@@ -40,13 +40,11 @@ const FirstPage = () => {
       <h1 className="m-2">Products:</h1>
       <ul>
         {products.map((product1, index1) => {
-          console.log(index1);
-          console.log("The products:  of te product 1 " + product1);
           return (
             <>
               <ProductsPage
                 id={index1}
-                key={index1}
+                key={product1}
                 prod={product1}
                 isProductDeleted={deletedProducts.includes(index1)}
                 completed={false}
