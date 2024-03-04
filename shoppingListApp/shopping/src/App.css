@@ -7,3 +7,6 @@
   font-size: calc(10px + 2vmin);
   color: #282c34;
 }
+.task-completed {
+  text-decoration: line-through;
+}
