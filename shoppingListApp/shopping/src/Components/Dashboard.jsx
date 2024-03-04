@@ -14,7 +14,11 @@ const Dashboard = () => {
   };
 
   const handleSubmit = () => {
-    if (product.trim()) {
+    if (products.indexOf(product.trim()) > -1) {
+      console.log("The item already exists");
+      setProduct("");
+    }
+    if (products.indexOf(product.trim()) === -1) {
       setProducts([...products, product.trim()]);
       setProduct("");
     }
