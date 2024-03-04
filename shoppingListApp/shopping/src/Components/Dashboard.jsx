@@ -8,16 +8,23 @@ const Dashboard = () => {
   const [deletedProducts, setDeletedProducts] = useState([]);
 
   const [checkedElementArr, setCheckedElementArr] = useState([]);
+  const [error, setError] = useState(false);
 
   const handleInputChange = (e) => {
     setProduct(e.target.value);
   };
 
-  const handleSubmit = () => {
-    if (products.indexOf(product.trim()) > -1) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (products.indexOf(product.trim()) > -1 && error === false) {
       console.log("The item already exists");
+      setError(true);
+      setProduct("");
+    } else {
+      setError(false);
       setProduct("");
     }
+
     if (products.indexOf(product.trim()) === -1) {
       setProducts([...products, product.trim()]);
       setProduct("");
@@ -32,12 +39,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-        className="d-flex btn-lg ms-2"
-      >
+      <form onSubmit={handleSubmit} className="d-flex btn-lg ms-2">
         <label htmlFor="ProductInput">Product</label>
         <input
           type="text"
@@ -50,13 +52,18 @@ const Dashboard = () => {
           Add Item
         </button>
       </form>
+      {error ? <label>Item already exists</label> : ""}
       <h1 className="m-2">Products:</h1>
       <ul>
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Product</th>
-              <th scope="col">Action</th>
+              <th scope="col" className="sticky-top">
+                Product
+              </th>
+              <th scope="col" className="sticky-top">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
