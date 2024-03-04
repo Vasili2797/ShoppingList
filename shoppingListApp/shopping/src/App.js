@@ -1,14 +1,14 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FirstPage from "./Components/FirstPage";
 import PageHeader from "./Components/PageHeader";
+import Dashboard from "./Components/Dashboard";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <PageHeader />
-        <FirstPage />
+        <Dashboard />
       </header>
     </div>
   );
