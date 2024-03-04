@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import "../App.css";
 
 const Dashboard = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(() => {
+    const localvalue = localStorage.getItem("ITEMS");
+    if (localvalue == null) {
+      return [];
+    }
+    return JSON.parse(localvalue);
+  });
+
   const [product, setProduct] = useState("");
   const [deletedProducts, setDeletedProducts] = useState([]);
 
   const [checkedElementArr, setCheckedElementArr] = useState([]);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(products), [products]);
+  });
 
   const handleInputChange = (e) => {
     setProduct(e.target.value);
@@ -98,6 +109,17 @@ const Dashboard = () => {
           </tbody>
         </table>
       </ul>
+      {products.length > 0 && (
+        <button
+          variant="primary"
+          className="btn btn-danger"
+          onClick={() => {
+            setProducts([]);
+          }}
+        >
+          Delete All Items
+        </button>
+      )}
     </>
   );
 };
